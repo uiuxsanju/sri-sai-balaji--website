@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/*
+ * Design system carried over from the original build so the brand look is unchanged.
+ * All colours are oklch. To add a semantic colour: declare it in :root, then register
+ * it in @theme inline as --color-<name>.
+ */
+
+@theme inline {
+  --font-sans:
+    "Manrope", "Noto Sans Telugu", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:
+    "Playfair Display", "Noto Sans Telugu", ui-serif, Georgia, serif;
+  --font-telugu:
+    "Noto Sans Telugu", "Nirmala UI", "Gautami", "Telugu Sangam MN",
+    "Noto Sans Telugu UI", sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-forest: var(--forest);
+  --color-sage: var(--sage);
+  --color-gold: var(--gold);
+  --color-cream-deep: var(--cream-deep);
+  --color-ink-soft: var(--ink-soft);
+}
+
+:root {
+  --radius: 0.375rem;
+  --background: oklch(0.966 0.021 79.2);
+  --foreground: oklch(0.205 0.045 44);
+  --card: oklch(0.994 0.008 78);
+  --card-foreground: oklch(0.205 0.045 44);
+  --primary: oklch(0.323 0.115 43.5);
+  --primary-foreground: oklch(0.966 0.021 79.2);
+  --secondary: oklch(0.876 0.047 76.4);
+  --secondary-foreground: oklch(0.323 0.115 43.5);
+  --muted: oklch(0.928 0.028 78);
+  --muted-foreground: oklch(0.45 0.035 47);
+  --accent: oklch(0.512 0.045 115);
+  --accent-foreground: oklch(0.99 0.008 78);
+  --border: oklch(0.82 0.045 73);
+  --input: oklch(0.82 0.045 73);
+  --ring: oklch(0.323 0.115 43.5);
+  --forest: oklch(0.305 0.058 143);
+  --sage: oklch(0.512 0.045 115);
+  --gold: oklch(0.625 0.103 76);
+  --cream-deep: oklch(0.906 0.048 77);
+  --ink-soft: oklch(0.35 0.046 43);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Telugu text uses a font with proper Telugu glyph support and slightly tighter
+     line-height, since the Latin brand faces have no Telugu coverage. */
+  [lang="te"] {
+    font-family: var(--font-telugu);
+    line-height: 1.55;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@utility organic-grain {
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--foreground) 12%, transparent) 0.55px,
+    transparent 0.55px
+  );
+  background-size: 7px 7px;
+}
+
+@keyframes gentle-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: gentle-rise 0.7s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
