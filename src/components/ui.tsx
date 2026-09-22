@@ -42,7 +42,8 @@ export function BrandMark({ light = false }: { light?: boolean }) {
         </small>
         <span
           lang="te"
-          className={`mt-1 block max-w-[9.5rem] text-[10px] leading-snug font-medium sm:mt-1.5 sm:max-w-none sm:text-xs sm:whitespace-nowrap ${light ? "text-primary-foreground/75" : "text-ink-soft"}`}        >
+          className={`border-gold/60 mt-1.5 block max-w-[10.5rem] border-t pt-1 text-[10px] leading-snug font-semibold sm:max-w-none sm:text-xs sm:whitespace-nowrap lg:text-[13px] ${light ? "text-primary-foreground/80" : "text-primary/85"}`}
+        >
           {site.teluguTagline}
         </span>
       </span>

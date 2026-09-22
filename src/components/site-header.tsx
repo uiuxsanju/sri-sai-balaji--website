@@ -56,7 +56,7 @@ export function SiteHeader() {
             : "bg-background"
         }`}
       >
-        <div className="mx-auto grid h-20 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:grid-cols-[auto_1fr_auto] lg:px-10">
+        <div className="mx-auto grid min-h-20 py-2 lg:h-24 lg:py-0 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:grid-cols-[auto_1fr_auto] lg:px-10">
           <BrandMark />
 
           <nav
