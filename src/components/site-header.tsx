@@ -2,10 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronRight, Menu, Phone, ShoppingBag, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  ChevronRight,
+  Menu,
+  Phone,
+  Search,
+  ShoppingBag,
+  X,
+} from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useBasket } from "@/components/basket-context";
+import { SearchOverlay } from "@/components/search-overlay";
 import { BrandMark, WhatsAppButton } from "@/components/ui";
 import { categories } from "@/data/products";
 import { site } from "@/data/site";
@@ -32,6 +40,8 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const { count } = useBasket();
+  const [searchOpen, setSearchOpen] = useState(false);
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -100,6 +110,14 @@ export function SiteHeader() {
                 Call {site.phoneDisplay}
               </span>
             </a>
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search products"
+              className="border-border hover:border-primary hover:text-primary text-primary hidden size-11 shrink-0 place-items-center rounded-full border transition lg:grid"
+            >
+              <Search className="size-[18px]" aria-hidden="true" />
+            </button>
             <Link
               href="/basket"
               data-basket-target
@@ -138,7 +156,25 @@ export function SiteHeader() {
             </button>
           </div>
         </div>
+        {/* Mobile / tablet search bar, Flipkart-style */}
+        <div className="mx-auto max-w-[1440px] px-5 pb-3 lg:hidden">
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="border-border bg-card text-muted-foreground flex min-h-11 w-full items-center gap-3 rounded-md border px-4 text-left text-sm shadow-[0_1px_2px_color-mix(in_oklab,var(--foreground)_6%,transparent)]"
+          >
+            <Search
+              className="text-primary size-4 shrink-0"
+              aria-hidden="true"
+            />
+            <span className="truncate">
+              Search products… / ఉత్పత్తులు వెతకండి
+            </span>
+          </button>
+        </div>
       </header>
+
+      <SearchOverlay open={searchOpen} onClose={closeSearch} />
 
       {/*
        * The mobile menu is rendered as a sibling of <header>, not inside it. The header

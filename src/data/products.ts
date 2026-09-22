@@ -113,7 +113,7 @@ export const categories: Category[] = [
     faqs: [
       {
         q: "Which spice powders do you stock?",
-        a: "Masala mirchi (chilli) powder, chaya pasupu (turmeric) powder, daniya (coriander) powder, jeera (cumin) powder and vulva powder.",
+        a: "Mirchi (chilli) powder, chaya pasupu (turmeric) powder, daniya (coriander) powder, jeera (cumin) powder and vulva powder.",
       },
       {
         q: "What pack sizes are available for spices?",
@@ -407,15 +407,15 @@ export const products: Product[] = [
   // ─── Spices & Powders ─────────────────────────────────────────────────────
   {
     slug: "masala-mirchi-powder",
-    name: "Masala Mirchi Powder",
-    teluguName: "మసాలా మిరప కారం",
+    name: "Mirchi Powder",
+    teluguName: "మిరప కారం",
     category: "spices-and-powders",
     image: "masala-mirchi-powder",
-    imageAlt: "Natural masala mirchi chilli powder packet in Vijayawada",
-    seoTitle: "Masala Mirchi Powder in Vijayawada | Andhra Chilli Powder",
+    imageAlt: "Natural mirchi chilli powder packet in Vijayawada",
+    seoTitle: "Mirchi Powder in Vijayawada | Andhra Chilli Powder",
     metaDescription:
-      "Andhra-style masala mirchi powder ground from dried red chillies, packed in 250 g, 500 g and 1 kg. Available in Vijayawada — enquire on WhatsApp.",
-    h1: "Masala Mirchi Powder",
+      "Andhra-style mirchi powder ground from dried red chillies, packed in 250 g, 500 g and 1 kg. Available in Vijayawada — enquire on WhatsApp.",
+    h1: "Mirchi Powder",
     short: "Bright red chilli powder ground from dried Andhra chillies.",
     description: [
       "Mirchi karam is the colour and heat behind most Andhra cooking. Ours is ground from dried red chillies in small lots, which is why the packet still smells of chilli when you open it.",
@@ -943,6 +943,44 @@ export const products: Product[] = [
 
   // ─── Andhra Pickles ───────────────────────────────────────────────────────
     {
+    slug: "veg-pickle",
+    name: "Veg Pickle",
+    teluguName: "కూరగాయల పచ్చడి",
+    displayName: "Andhra Veg Pickle",
+    category: "andhra-pickles",
+    image: "veg-pickle",
+    imageAlt: "Traditional Andhra veg pickle jar in Vijayawada",
+    seoTitle:
+      "Andhra Veg Pickle in Vijayawada | Traditional Mixed Vegetable Pickle",
+    metaDescription:
+      "Traditional Andhra mixed vegetable pickle made to a home recipe, packed in glass jars. Available in Vijayawada — WhatsApp for sizes and price.",
+    h1: "Andhra Veg Pickle",
+    short: "Mixed vegetable pickle made to a traditional Andhra home recipe.",
+    description: [
+      "A mixed vegetable pickle cut, salted and spiced the way it is done at home — freshly ground masala, and enough oil on top to keep the pickle covered.",
+      "Eaten with rice and ghee, curd rice, idli, dosa or roti.",
+    ],
+    features: [
+      "Traditional Andhra home recipe",
+      "Freshly ground pickle masala",
+      "Packed in glass jars",
+      "250 g, 500 g and 1 kg jars",
+    ],
+    sizes: ["250 g", "500 g", "1 kg"],
+    keywords: [
+      "Andhra veg pickle Vijayawada",
+      "veg pickle Vijayawada",
+      "traditional Andhra pickle",
+      "mixed vegetable pickle Vijayawada",
+    ],
+    faqs: [
+      {
+        q: "How long does the pickle keep?",
+        a: "Kept closed at room temperature, used with a dry spoon and with the oil layer covering the pickle, it keeps well. Ask us on WhatsApp for the batch date of the jar you are buying.",
+      },
+    ],
+  },
+  {
     slug: "chicken-pickle",
     name: "Chicken Pickle",
     teluguName: "చికెన్ పచ్చడి",

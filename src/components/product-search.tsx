@@ -1,10 +1,11 @@
 "use client";
 
 import { Search, SearchX } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { ProductGrid } from "@/components/product";
 import { categories, type Product } from "@/data/products";
+import { matchesProduct } from "@/lib/search";
 
 const ALL = "All Products";
 
@@ -17,20 +18,17 @@ export function ProductSearch({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>(ALL);
 
-  const filtered = useMemo(() => {
-    const search = query.trim().toLowerCase();
+  // Pick up ?q= from the header search.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q) setQuery(q);
+  }, []);
 
+  const filtered = useMemo(() => {
     return products.filter((product) => {
       const matchesCategory = category === ALL || product.category === category;
       if (!matchesCategory) return false;
-      if (!search) return true;
-
-      return (
-        product.name.toLowerCase().includes(search) ||
-        (product.displayName ?? "").toLowerCase().includes(search) ||
-        product.teluguName.includes(query.trim()) ||
-        product.slug.includes(search)
-      );
+      return matchesProduct(product, query);
     });
   }, [products, query, category]);
 
