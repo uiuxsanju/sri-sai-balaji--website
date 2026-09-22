@@ -26,6 +26,14 @@ export const site = {
   whatsappNumber: "916300550588",
   whatsappBase: "https://wa.me/916300550588",
   city: "Vijayawada",
+  address: {
+    unit: "Sri Sai Balaji Oil Mill",
+    street: "Near Ramalayam Temple, Kothapalli Road",
+    locality: "Meerjapuram",
+    postalCode: "521111",
+  },
+  addressLine:
+    "Sri Sai Balaji Oil Mill, Near Ramalayam Temple, Kothapalli Road, Meerjapuram, Andhra Pradesh 521111",
   state: "Andhra Pradesh",
   country: "India",
   countryCode: "IN",

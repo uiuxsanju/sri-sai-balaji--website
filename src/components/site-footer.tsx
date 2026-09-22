@@ -97,8 +97,14 @@ export function SiteFooter() {
                   WhatsApp enquiry
                 </a>
               </li>
-              <li>
-                {site.city}, {site.state}
+              <li className="leading-6">
+                <address className="not-italic">
+                  Sri Sai Balaji Oil Mill
+                  <br />
+                  Near Ramalayam Temple, Kothapalli Road
+                  <br />
+                  Meerjapuram, Andhra Pradesh 521111
+                </address>
               </li>
             </ul>
           </div>

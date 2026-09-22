@@ -21,25 +21,31 @@ export function BrandMark({ light = false }: { light?: boolean }) {
   return (
     <Link
       href="/"
-      className={`flex min-w-0 items-center gap-2.5 sm:gap-3 ${light ? "text-primary-foreground" : "text-primary"}`}
+      className={`flex min-w-0 items-center gap-2.5 sm:gap-3.5 ${light ? "text-primary-foreground" : "text-primary"}`}
       aria-label={`${site.name} home`}
     >
       <Image
         src="/products/logo.webp"
-        width={48}
-        height={44}
+        width={160}
+        height={146}
         alt=""
         aria-hidden="true"
         priority
-        className="h-11 w-auto shrink-0"
+        className="h-14 w-auto shrink-0 sm:h-16 lg:h-20"
       />
       <span className="min-w-0 leading-none">
-        <strong className="block font-serif text-[15px] whitespace-nowrap min-[375px]:text-base sm:text-xl">
+        <strong className="block font-serif text-[15px] whitespace-nowrap min-[375px]:text-base sm:text-xl lg:text-2xl">
           Sri Sai Balaji
         </strong>
-        <small className="text-[9px] font-semibold tracking-[.26em] uppercase">
+        <small className="mt-1 block text-[9px] font-semibold tracking-[.26em] uppercase sm:text-[10px]">
           Naturals
         </small>
+        <span
+          lang="te"
+          className={`mt-1.5 hidden text-[11px] leading-tight font-medium whitespace-nowrap min-[400px]:block sm:text-xs ${light ? "text-primary-foreground/75" : "text-ink-soft"}`}
+        >
+          {site.teluguTagline}
+        </span>
       </span>
     </Link>
   );

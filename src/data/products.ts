@@ -942,51 +942,13 @@ export const products: Product[] = [
   },
 
   // ─── Andhra Pickles ───────────────────────────────────────────────────────
-  {
-    slug: "veg-pickle",
-    name: "Veg Pickle",
-    teluguName: "కూరగాయల పచ్చడి",
-    displayName: "Andhra Veg Pickle",
-    category: "andhra-pickles",
-    image: "veg-pickle",
-    imageAlt: "Traditional Andhra veg pickle jar in Vijayawada",
-    seoTitle:
-      "Andhra Veg Pickle in Vijayawada | Traditional Mixed Vegetable Pickle",
-    metaDescription:
-      "Traditional Andhra mixed vegetable pickle made to a home recipe, packed in glass jars. Available in Vijayawada — WhatsApp for sizes and price.",
-    h1: "Andhra Veg Pickle",
-    short: "Mixed vegetable pickle made to a traditional Andhra home recipe.",
-    description: [
-      "A mixed vegetable pickle cut, salted and spiced the way it is done at home — freshly ground masala, and enough oil on top to keep the pickle covered.",
-      "Eaten with rice and ghee, curd rice, idli, dosa or roti.",
-    ],
-    features: [
-      "Traditional Andhra home recipe",
-      "Freshly ground pickle masala",
-      "Packed in glass jars",
-      "250 g, 500 g and 1 kg jars",
-    ],
-    sizes: ["250 g", "500 g", "1 kg"],
-    keywords: [
-      "Andhra veg pickle Vijayawada",
-      "veg pickle Vijayawada",
-      "traditional Andhra pickle",
-      "mixed vegetable pickle Vijayawada",
-    ],
-    faqs: [
-      {
-        q: "How long does the pickle keep?",
-        a: "Kept closed at room temperature, used with a dry spoon and with the oil layer covering the pickle, it keeps well. Ask us on WhatsApp for the batch date of the jar you are buying.",
-      },
-    ],
-  },
-  {
+    {
     slug: "chicken-pickle",
     name: "Chicken Pickle",
     teluguName: "చికెన్ పచ్చడి",
     displayName: "Andhra Chicken Pickle",
     category: "andhra-pickles",
-    image: null,
+    image: "chicken-pickle",
     imageAlt: "Andhra chicken pickle from Sri Sai Balaji Naturals, Vijayawada",
     seoTitle:
       "Andhra Chicken Pickle in Vijayawada | Traditional Non-Veg Pickle",
@@ -1018,7 +980,7 @@ export const products: Product[] = [
     teluguName: "రొయ్యల పచ్చడి",
     displayName: "Andhra Prawns Pickle",
     category: "andhra-pickles",
-    image: null,
+    image: "prawns-pickle",
     imageAlt: "Andhra prawns pickle from Sri Sai Balaji Naturals, Vijayawada",
     seoTitle: "Andhra Prawns Pickle in Vijayawada | Traditional Royyala Pickle",
     metaDescription:
@@ -1049,7 +1011,7 @@ export const products: Product[] = [
     teluguName: "మటన్ పచ్చడి",
     displayName: "Andhra Mutton Pickle",
     category: "andhra-pickles",
-    image: null,
+    image: "mutton-pickle",
     imageAlt: "Andhra mutton pickle from Sri Sai Balaji Naturals, Vijayawada",
     seoTitle: "Andhra Mutton Pickle in Vijayawada | Traditional Non-Veg Pickle",
     metaDescription:
