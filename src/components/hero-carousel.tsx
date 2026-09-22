@@ -105,7 +105,7 @@ export function HeroCarousel() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-[1440px] px-5 py-12 sm:py-16 lg:px-10 lg:py-20">
+      <div className="relative mx-auto max-w-[1440px] px-5 py-6 sm:py-14 lg:px-10 lg:py-20">
         {slides.map((slide, i) => (
           <div
             key={slide.image}
@@ -113,7 +113,7 @@ export function HeroCarousel() {
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${slides.length}`}
             aria-hidden={i !== index}
-            className={`grid items-center gap-8 transition-opacity duration-300 lg:grid-cols-[1.05fr_.95fr] lg:gap-14 ${
+            className={`grid items-center gap-5 transition-opacity sm:gap-8 duration-300 lg:grid-cols-[1.05fr_.95fr] lg:gap-14 ${
               i === index
                 ? "opacity-100"
                 : "pointer-events-none absolute inset-0 -z-10 opacity-0"
@@ -147,7 +147,7 @@ export function HeroCarousel() {
                 </p>
               )}
 
-              <p className="text-primary-foreground/80 mt-6 max-w-lg text-base leading-8">
+              <p className="text-primary-foreground/80 mt-4 max-w-lg text-[15px] leading-7 sm:mt-6 sm:text-base sm:leading-8">
                 {slide.copy}
               </p>
               <p
@@ -157,7 +157,7 @@ export function HeroCarousel() {
                 {slide.teluguCopy}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
                 <Link
                   href={slide.cta.href}
                   className="bg-primary-foreground text-primary hover:bg-secondary group inline-flex min-h-12 items-center gap-3 rounded-sm px-6 text-sm font-bold transition"
@@ -176,7 +176,7 @@ export function HeroCarousel() {
             </div>
 
             <div className="order-first lg:order-none">
-              <div className="bg-primary-foreground/10 mx-auto max-w-sm rounded-sm p-6 lg:max-w-md lg:p-10">
+              <div className="bg-primary-foreground/10 mx-auto flex w-full max-w-sm items-center justify-center rounded-sm px-4 py-5 sm:p-6 lg:max-w-md lg:p-10">
                 <PackShot
                   name={slide.image}
                   width={800}
@@ -184,15 +184,15 @@ export function HeroCarousel() {
                   sizes="(min-width: 1024px) 420px, 300px"
                   alt={slide.alt}
                   priority
-                  fallback={<div className="aspect-square w-full" aria-hidden="true" />}
-                  className="aspect-square w-full object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,.28)]"
+                  fallback={<div className="aspect-square mx-auto w-full max-w-[min(46vh,260px)] sm:max-w-full" aria-hidden="true" />}
+                  className="aspect-square mx-auto h-auto w-full max-h-[min(46vh,260px)] max-w-[min(46vh,260px)] object-contain sm:max-h-none sm:max-w-full drop-shadow-[0_24px_40px_rgba(0,0,0,.28)]"
                 />
               </div>
             </div>
           </div>
         ))}
 
-        <div className="mt-10 flex items-center justify-between gap-4">
+        <div className="mt-6 flex items-center justify-between gap-4 sm:mt-10">
           <div className="flex gap-2" role="tablist" aria-label="Choose slide">
             {slides.map((s, i) => (
               <button

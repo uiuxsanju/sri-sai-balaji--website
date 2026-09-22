@@ -68,7 +68,7 @@ export function SiteHeader() {
             : "bg-background"
         }`}
       >
-        <div className="mx-auto grid min-h-20 py-2 lg:h-24 lg:py-0 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:grid-cols-[max-content_minmax(0,1fr)_auto] lg:px-10">
+        <div className="mx-auto grid min-h-16 py-1.5 sm:min-h-20 sm:py-2 lg:h-24 lg:py-0 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:gap-4 sm:px-5 lg:grid-cols-[max-content_minmax(0,1fr)_auto] lg:px-10">
           <BrandMark />
 
           <nav
@@ -157,11 +157,11 @@ export function SiteHeader() {
           </div>
         </div>
         {/* Mobile / tablet search bar, Flipkart-style */}
-        <div className="mx-auto max-w-[1440px] px-5 pb-3 lg:hidden">
+        <div className="mx-auto max-w-[1440px] px-4 pb-2 sm:px-5 sm:pb-3 lg:hidden">
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="border-border bg-card text-muted-foreground flex min-h-11 w-full items-center gap-3 rounded-md border px-4 text-left text-sm shadow-[0_1px_2px_color-mix(in_oklab,var(--foreground)_6%,transparent)]"
+            className="border-border bg-card text-muted-foreground flex min-h-10 w-full items-center gap-2.5 rounded-md border px-3.5 sm:min-h-11 sm:gap-3 sm:px-4 text-left text-sm shadow-[0_1px_2px_color-mix(in_oklab,var(--foreground)_6%,transparent)]"
           >
             <Search
               className="text-primary size-4 shrink-0"

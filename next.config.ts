@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Hides the round "N" Next.js dev-tools button shown during `npm run dev`.
+  // It never appears on the live (production) site.
+  devIndicators: false,
   images: {
     // Every image is pre-generated as WebP at 400/800/1200px in /public and served with a
     // hand-built srcset (see components/pack-shot.tsx), so the runtime optimiser is off.
