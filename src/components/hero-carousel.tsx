@@ -181,7 +181,7 @@ export function HeroCarousel() {
                   name={slide.image}
                   width={800}
                   height={800}
-                  sizes="(min-width: 1024px) 420px, 70vw"
+                  sizes="(min-width: 1024px) 420px, 300px"
                   alt={slide.alt}
                   priority
                   fallback={<div className="aspect-square w-full" aria-hidden="true" />}
