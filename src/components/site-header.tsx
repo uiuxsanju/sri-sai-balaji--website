@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronRight, Menu, Phone, X } from "lucide-react";
+import { ChevronRight, Menu, Phone, ShoppingBag, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { useBasket } from "@/components/basket-context";
 import { BrandMark, WhatsAppButton } from "@/components/ui";
 import { categories } from "@/data/products";
 import { site } from "@/data/site";
@@ -30,6 +31,7 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { count } = useBasket();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -98,12 +100,29 @@ export function SiteHeader() {
                 Call {site.phoneDisplay}
               </span>
             </a>
+            <Link
+              href="/basket"
+              aria-label={`Basket, ${count} ${count === 1 ? "item" : "items"}`}
+              className="border-border hover:border-primary hover:text-primary text-primary relative grid size-11 shrink-0 place-items-center rounded-full border transition"
+            >
+              <ShoppingBag className="size-[18px]" aria-hidden="true" />
+              {count > 0 && (
+                <span className="bg-gold text-primary absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full px-1 text-[10px] font-bold">
+                  {count > 99 ? "99+" : count}
+                </span>
+              )}
+            </Link>
             <WhatsAppButton
               message={`Hello ${site.name}, I would like to know more about your natural food products in Vijayawada.`}
-              className="!min-h-11 !gap-2 !px-3 text-xs sm:!px-4"
+              className="!min-h-11 !gap-2 !px-3 text-xs max-[419px]:!w-11 max-[419px]:!px-0 sm:!px-4"
             >
               <span className="hidden sm:inline">WhatsApp</span>
-              <span className="sm:hidden">Enquire</span>
+              <span className="hidden min-[420px]:inline sm:hidden">
+                Enquire
+              </span>
+              <span className="sr-only min-[420px]:hidden">
+                Enquire on WhatsApp
+              </span>
             </WhatsAppButton>
             <button
               onClick={() => setMenuOpen(true)}
@@ -164,6 +183,17 @@ export function SiteHeader() {
                 <ChevronRight className="size-5 opacity-60" />
               </Link>
             ))}
+            <Link
+              href="/basket"
+              className="border-primary-foreground/15 flex items-center justify-between border-b py-4 font-serif text-2xl"
+            >
+              Basket
+              {count > 0 && (
+                <span className="bg-primary-foreground text-primary grid min-w-7 place-items-center rounded-full px-2 text-sm font-bold">
+                  {count}
+                </span>
+              )}
+            </Link>
             <Link
               href="/natural-foods-vijayawada"
               className="border-primary-foreground/15 border-b py-4 font-serif text-2xl"

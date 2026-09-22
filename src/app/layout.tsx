@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { BasketProvider } from "@/components/basket-context";
 
 import { site, SITE_URL } from "@/data/site";
 import "./globals.css";
@@ -58,7 +59,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {children}
+        <BasketProvider>{children}</BasketProvider>
       </body>
     </html>
   );
