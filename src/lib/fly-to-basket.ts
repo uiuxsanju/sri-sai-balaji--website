@@ -16,7 +16,10 @@ function visibleRatio(r: DOMRect): number {
 export function flyToBasket(fromEl?: HTMLElement | null) {
   if (typeof window === "undefined") return;
 
-  const target = document.querySelector<HTMLElement>("[data-basket-target]");
+  // Header has one basket for mobile and one for desktop — use the visible one.
+  const target = [
+    ...document.querySelectorAll<HTMLElement>("[data-basket-target]"),
+  ].find((el) => el.offsetWidth > 0);
   if (!target) return;
   const to = target.getBoundingClientRect();
   if (!to.width) return;

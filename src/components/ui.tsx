@@ -17,7 +17,14 @@ export function JsonLd({ data }: { data: object | object[] }) {
   );
 }
 
-export function BrandMark({ light = false }: { light?: boolean }) {
+export function BrandMark({
+  light = false,
+  inline = false,
+}: {
+  light?: boolean;
+  /** Header mode: on small phones show only the logo so search fits on the same line. */
+  inline?: boolean;
+}) {
   return (
     <Link
       href="/"
@@ -31,9 +38,11 @@ export function BrandMark({ light = false }: { light?: boolean }) {
         alt=""
         aria-hidden="true"
         priority
-        className="h-12 w-auto shrink-0 sm:h-16 lg:h-20"
+        className={`${inline ? "h-11" : "h-12"} w-auto shrink-0 sm:h-16 lg:h-20`}
       />
-      <span className="min-w-0 leading-none">
+      <span
+        className={`min-w-0 leading-none ${inline ? "hidden min-[430px]:block" : ""}`}
+      >
         <strong className="block font-serif text-[15px] whitespace-nowrap min-[375px]:text-base sm:text-xl lg:text-2xl">
           Sri Sai Balaji
         </strong>
@@ -42,7 +51,7 @@ export function BrandMark({ light = false }: { light?: boolean }) {
         </small>
         <span
           lang="te"
-          className={`border-gold/60 mt-1.5 hidden max-w-[10.5rem] min-[360px]:block border-t pt-1 text-[10px] leading-snug font-semibold sm:max-w-none sm:text-xs sm:whitespace-nowrap lg:max-w-[13.5rem] lg:whitespace-normal 2xl:max-w-[15rem] 2xl:text-[13px] ${light ? "text-primary-foreground/80" : "text-primary/85"}`}
+          className={`border-gold/60 mt-1.5 hidden max-w-[10.5rem] ${inline ? "lg:block" : "min-[360px]:block"} border-t pt-1 text-[10px] leading-snug font-semibold sm:max-w-none sm:text-xs sm:whitespace-nowrap lg:max-w-[13.5rem] lg:whitespace-normal 2xl:max-w-[15rem] 2xl:text-[13px] ${light ? "text-primary-foreground/80" : "text-primary/85"}`}
         >
           {site.teluguTagline}
         </span>

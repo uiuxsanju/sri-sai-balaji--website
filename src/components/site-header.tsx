@@ -44,6 +44,12 @@ export function SiteHeader() {
   const closeSearch = useCallback(() => setSearchOpen(false), []);
 
   useEffect(() => {
+    const open = () => setSearchOpen(true);
+    window.addEventListener("open-product-search", open);
+    return () => window.removeEventListener("open-product-search", open);
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -99,10 +105,10 @@ export function SiteHeader() {
             })}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex min-w-0 items-center justify-end gap-2">
             <a
               href={`tel:${site.phoneE164}`}
-              className="text-primary hidden items-center gap-2 text-sm font-semibold whitespace-nowrap sm:inline-flex lg:hidden xl:inline-flex"
+              className="text-primary hidden items-center gap-2 text-sm font-semibold whitespace-nowrap xl:inline-flex"
             >
               <Phone className="size-4" aria-hidden="true" />
               <span className="hidden md:inline">{site.phoneDisplay}</span>
@@ -114,7 +120,7 @@ export function SiteHeader() {
               type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="Search products"
-              className="border-border hover:border-primary hover:text-primary text-primary hidden size-11 shrink-0 place-items-center rounded-full border transition lg:grid"
+              className={`border-border hover:border-primary hover:text-primary text-primary size-11 shrink-0 place-items-center rounded-full border transition lg:grid ${pathname === "/" ? "hidden" : "grid"}`}
             >
               <Search className="size-[18px]" aria-hidden="true" />
             </button>
@@ -122,29 +128,21 @@ export function SiteHeader() {
               href="/basket"
               data-basket-target
               aria-label={`Basket, ${count} ${count === 1 ? "item" : "items"}`}
-              className="border-border hover:border-primary hover:text-primary text-primary relative grid size-11 shrink-0 place-items-center rounded-full border transition"
+              className="border-border hover:border-primary hover:text-primary text-primary relative grid size-12 shrink-0 place-items-center rounded-full border transition lg:size-11"
             >
               <ShoppingBag className="size-[18px]" aria-hidden="true" />
-              {count > 0 && (
-                <span
-                  key={count}
-                  className="bg-gold text-primary basket-pop absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full px-1 text-[10px] font-bold"
-                >
-                  {count > 99 ? "99+" : count}
-                </span>
-              )}
+              <span
+                key={count}
+                className="bg-primary text-primary-foreground basket-pop absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full px-1 text-[10px] font-bold"
+              >
+                {count > 99 ? "99+" : count}
+              </span>
             </Link>
             <WhatsAppButton
               message={`Hello ${site.name}, I would like to know more about your natural food products in Vijayawada.`}
-              className="!min-h-11 !gap-2 !px-3 text-xs max-[419px]:!w-11 max-[419px]:!px-0 sm:!px-4"
+              className="!hidden !min-h-11 !gap-2 !px-4 text-xs md:!inline-flex"
             >
-              <span className="hidden sm:inline">WhatsApp</span>
-              <span className="hidden min-[420px]:inline sm:hidden">
-                Enquire
-              </span>
-              <span className="sr-only min-[420px]:hidden">
-                Enquire on WhatsApp
-              </span>
+              WhatsApp
             </WhatsAppButton>
             <button
               onClick={() => setMenuOpen(true)}
@@ -155,22 +153,6 @@ export function SiteHeader() {
               <Menu />
             </button>
           </div>
-        </div>
-        {/* Mobile / tablet search bar, Flipkart-style */}
-        <div className="mx-auto max-w-[1440px] px-4 pb-2 sm:px-5 sm:pb-3 lg:hidden">
-          <button
-            type="button"
-            onClick={() => setSearchOpen(true)}
-            className="border-border bg-card text-muted-foreground flex min-h-10 w-full items-center gap-2.5 rounded-md border px-3.5 sm:min-h-11 sm:gap-3 sm:px-4 text-left text-sm shadow-[0_1px_2px_color-mix(in_oklab,var(--foreground)_6%,transparent)]"
-          >
-            <Search
-              className="text-primary size-4 shrink-0"
-              aria-hidden="true"
-            />
-            <span className="truncate">
-              Search products… / ఉత్పత్తులు వెతకండి
-            </span>
-          </button>
         </div>
       </header>
 

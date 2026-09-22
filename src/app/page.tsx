@@ -21,6 +21,7 @@ import {
   websiteSchema,
 } from "@/lib/seo";
 import { PackShot } from "@/components/pack-shot";
+import { HomeSearchCard } from "@/components/home-search-card";
 
 export const metadata = seo({
   title:
@@ -111,6 +112,53 @@ export default function HomePage() {
 
       <HeroCarousel />
 
+      {/* Phones: search card + category circles (desktop keeps the header search) */}
+      <section className="px-4 pt-5 pb-8 lg:hidden">
+        <HomeSearchCard />
+
+        <div className="mt-8 flex items-end justify-between gap-3">
+          <div>
+            <p className="text-sage text-[11px] font-bold tracking-[.24em] uppercase">
+              Our Categories
+            </p>
+            <h2 className="mt-1 font-serif text-[1.7rem] leading-tight">
+              Shop by Category
+            </h2>
+          </div>
+          <Link
+            href="/categories"
+            className="text-primary inline-flex min-h-11 shrink-0 items-center gap-1.5 text-sm font-bold"
+          >
+            View All
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
+        </div>
+        <ul className="-mx-4 mt-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {categories.map((cat) => (
+            <li key={cat.slug} className="w-[76px] shrink-0 snap-start">
+              <Link
+                href={`/categories/${cat.slug}`}
+                className="flex flex-col items-center gap-2 text-center"
+              >
+                <span className="bg-secondary/50 border-border grid size-[76px] place-items-center overflow-hidden rounded-full border p-2">
+                  <PackShot
+                    name={cat.image}
+                    width={120}
+                    height={120}
+                    sizes="76px"
+                    alt=""
+                    className="size-full object-contain"
+                  />
+                </span>
+                <span className="text-foreground text-xs leading-tight font-semibold">
+                  {cat.shortName}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {/* Introduction */}
       <section className="border-border border-b px-5 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-10 lg:grid-cols-[1.1fr_.9fr] lg:gap-16">
@@ -185,8 +233,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Product categories */}
-      <section className="px-5 py-16 lg:px-10 lg:py-24">
+      {/* Product categories (phones use the circles above) */}
+      <section className="hidden px-5 py-16 lg:block lg:px-10 lg:py-24">
         <div className="mx-auto max-w-[1400px]">
           <SectionHeading
             eyebrow="The Pantry"

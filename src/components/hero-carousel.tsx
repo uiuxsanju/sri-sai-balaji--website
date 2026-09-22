@@ -1,8 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  Leaf,
+  ScrollText,
+} from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+
+/** Only claims printed on the brand's own packaging. */
+const BADGES = [
+  { icon: Leaf, label: "No Preservatives" },
+  { icon: ScrollText, label: "Traditional Recipe" },
+  { icon: Heart, label: "100% Natural" },
+];
 
 import { WhatsAppButton } from "@/components/ui";
 import { site } from "@/data/site";
@@ -19,6 +33,8 @@ type Slide = {
   emphasis: string;
   copy: string;
   teluguCopy: string;
+  /** Short line shown under the heading on phones. */
+  tagline: string;
   cta: { label: string; href: string };
 };
 
@@ -26,6 +42,7 @@ type Slide = {
 const slides: Slide[] = [
   {
     image: "forest-honey",
+    tagline: "Pure Foods from Andhra Kitchens",
     alt: "Forest honey jar from Sri Sai Balaji Naturals in Vijayawada",
     eyebrow: "Vijayawada · Andhra Pradesh",
     heading: "Natural & Traditional Foods in",
@@ -37,6 +54,7 @@ const slides: Slide[] = [
   },
   {
     image: "cold-pressed-groundnut-oil",
+    tagline: "Slow Pressed in Small Batches",
     alt: "Cold pressed groundnut oil bottle from Sri Sai Balaji Naturals",
     eyebrow: "Wood Pressed",
     heading: "Cold Pressed Oils for",
@@ -48,6 +66,7 @@ const slides: Slide[] = [
   },
   {
     image: "veg-pickle",
+    tagline: "Homemade Taste in Every Bite",
     alt: "Traditional Andhra veg pickle jar from Sri Sai Balaji Naturals",
     eyebrow: "Home Recipes",
     heading: "Authentic",
@@ -59,6 +78,7 @@ const slides: Slide[] = [
   },
   {
     image: "ragi-flour",
+    tagline: "Milled Fresh in Small Batches",
     alt: "Natural ragi flour packet from Sri Sai Balaji Naturals",
     eyebrow: "Millets & Staples",
     heading: "Natural Foods &",
@@ -113,22 +133,22 @@ export function HeroCarousel() {
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${slides.length}`}
             aria-hidden={i !== index}
-            className={`grid items-center gap-5 transition-opacity sm:gap-8 duration-300 lg:grid-cols-[1.05fr_.95fr] lg:gap-14 ${
+            className={`grid grid-cols-[1.15fr_1fr] items-center gap-3 transition-opacity duration-300 sm:gap-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-14 ${
               i === index
                 ? "opacity-100"
                 : "pointer-events-none absolute inset-0 -z-10 opacity-0"
             }`}
           >
             <div className={i === index ? "reveal" : ""}>
-              <div className="mb-5 flex items-center gap-3">
-                <span className="bg-gold h-px w-10" />
-                <span className="text-secondary text-[11px] font-bold tracking-[.24em] uppercase">
+              <div className="mb-3 flex items-center gap-3 lg:mb-5">
+                <span className="bg-gold hidden h-px w-10 lg:block" />
+                <span className="text-secondary text-[9px] leading-relaxed font-bold tracking-[.2em] uppercase sm:text-[11px] sm:tracking-[.24em]">
                   {slide.eyebrow}
                 </span>
               </div>
 
               {i === 0 ? (
-                <h1 className="max-w-xl font-serif text-[2.1rem] leading-[1.08] sm:text-5xl lg:text-6xl">
+                <h1 className="max-w-xl font-serif text-[1.55rem] leading-[1.08] min-[390px]:text-[1.8rem] sm:text-5xl lg:text-6xl">
                   {slide.heading}{" "}
                   <em className="text-secondary font-medium">
                     {slide.emphasis}
@@ -138,7 +158,7 @@ export function HeroCarousel() {
                 <p
                   role="heading"
                   aria-level={2}
-                  className="max-w-xl font-serif text-[2.1rem] leading-[1.08] sm:text-5xl lg:text-6xl"
+                  className="max-w-xl font-serif text-[1.55rem] leading-[1.08] min-[390px]:text-[1.8rem] sm:text-5xl lg:text-6xl"
                 >
                   {slide.heading}{" "}
                   <em className="text-secondary font-medium">
@@ -147,17 +167,21 @@ export function HeroCarousel() {
                 </p>
               )}
 
-              <p className="text-primary-foreground/80 mt-4 max-w-lg text-[15px] leading-7 sm:mt-6 sm:text-base sm:leading-8">
+              <p className="text-primary-foreground/90 mt-3 font-serif text-[15px] leading-snug lg:hidden">
+                {slide.tagline}
+              </p>
+
+              <p className="text-primary-foreground/80 mt-4 hidden max-w-lg text-[15px] leading-7 sm:mt-6 sm:text-base sm:leading-8 lg:block">
                 {slide.copy}
               </p>
               <p
                 lang="te"
-                className="text-primary-foreground/70 mt-2 max-w-lg text-base leading-8"
+                className="text-primary-foreground/70 mt-2 hidden max-w-lg text-base leading-8 lg:block"
               >
                 {slide.teluguCopy}
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
+              <div className="mt-6 hidden flex-wrap gap-3 sm:mt-8 lg:flex">
                 <Link
                   href={slide.cta.href}
                   className="bg-primary-foreground text-primary hover:bg-secondary group inline-flex min-h-12 items-center gap-3 rounded-sm px-6 text-sm font-bold transition"
@@ -175,8 +199,8 @@ export function HeroCarousel() {
               </div>
             </div>
 
-            <div className="order-first lg:order-none">
-              <div className="bg-primary-foreground/10 mx-auto flex w-full max-w-sm items-center justify-center rounded-sm px-4 py-5 sm:p-6 lg:max-w-md lg:p-10">
+            <div>
+              <div className="lg:bg-primary-foreground/10 mx-auto flex w-full max-w-sm items-center justify-center rounded-sm lg:max-w-md lg:p-10">
                 <PackShot
                   name={slide.image}
                   width={800}
@@ -184,10 +208,43 @@ export function HeroCarousel() {
                   sizes="(min-width: 1024px) 420px, 300px"
                   alt={slide.alt}
                   priority
-                  fallback={<div className="aspect-square mx-auto w-full max-w-[min(46vh,260px)] sm:max-w-full" aria-hidden="true" />}
-                  className="aspect-square mx-auto h-auto w-full max-h-[min(46vh,260px)] max-w-[min(46vh,260px)] object-contain sm:max-h-none sm:max-w-full drop-shadow-[0_24px_40px_rgba(0,0,0,.28)]"
+                  fallback={
+                    <div className="aspect-square w-full" aria-hidden="true" />
+                  }
+                  className="aspect-square mx-auto h-auto w-full object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,.28)]"
                 />
               </div>
+            </div>
+
+            {/* Phones: trust badges + gold CTA under the heading and image */}
+            <div className="col-span-2 lg:hidden">
+              <div className="flex items-center gap-3" aria-hidden="true">
+                <span className="bg-gold/50 h-px flex-1" />
+                <Leaf className="text-gold size-4" />
+                <span className="bg-gold/50 h-px flex-1" />
+              </div>
+              <ul className="mt-3 grid grid-cols-3 gap-2 text-center">
+                {BADGES.map(({ icon: Icon, label }) => (
+                  <li
+                    key={label}
+                    className="flex flex-col items-center gap-1.5"
+                  >
+                    <span className="border-gold/70 text-secondary grid size-10 place-items-center rounded-full border">
+                      <Icon className="size-[18px]" aria-hidden="true" />
+                    </span>
+                    <span className="text-primary-foreground/85 text-[11px] leading-tight">
+                      {label}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={slide.cta.href}
+                className="text-primary mt-5 inline-flex min-h-12 items-center gap-3 rounded-full bg-[linear-gradient(180deg,#f7dfa0,#e2b75c)] px-7 text-sm font-bold shadow-[0_8px_20px_rgba(0,0,0,.25)]"
+              >
+                {slide.cta.label}
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         ))}
