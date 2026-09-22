@@ -2,25 +2,37 @@
  * "Fly to cart" animation, as on Flipkart / Meesho: a copy of the product photo shrinks
  * and flies from the product image into the header basket icon, which then bounces.
  *
- * Pure DOM + Web Animations API — no dependency. Does nothing when the visitor prefers
- * reduced motion, or when either end of the flight isn't on screen.
+ * Pure DOM + Web Animations API — no dependency.
+ *
+ * On phones the product photo has usually scrolled off screen by the time the visitor
+ * reaches the button, so the flight then starts from the button itself (as Flipkart does
+ * on mobile), carrying a thumbnail of the product.
  */
-export function flyToBasket() {
+function visibleRatio(r: DOMRect): number {
+  const h = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+  return r.height ? Math.max(0, h) / r.height : 0;
+}
+
+export function flyToBasket(fromEl?: HTMLElement | null) {
   if (typeof window === "undefined") return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const target = document.querySelector<HTMLElement>("[data-basket-target]");
-  const source =
-    document.querySelector<HTMLElement>("[data-product-image] img") ??
-    document.querySelector<HTMLElement>("[data-product-image]");
-  if (!target || !source) return;
-
-  const from = source.getBoundingClientRect();
+  if (!target) return;
   const to = target.getBoundingClientRect();
-  if (!from.width || !to.width) return;
+  if (!to.width) return;
 
-  // Start from a square in the centre of the image, capped so it looks like a thumbnail.
-  const size = Math.min(from.width, from.height, 220);
+  const photo = document.querySelector<HTMLImageElement>(
+    "[data-product-image] img",
+  );
+  const photoRect = photo?.getBoundingClientRect();
+  const photoVisible = !!photoRect && visibleRatio(photoRect) >= 0.5;
+
+  const origin = photoVisible ? photoRect! : fromEl?.getBoundingClientRect();
+  if (!origin || !origin.width) return;
+  const from = origin;
+
+  // Thumbnail size: large when flying from the photo, small from the button.
+  const size = photoVisible ? Math.min(from.width, from.height, 220) : 64;
   const startX = from.left + from.width / 2 - size / 2;
   const startY = from.top + from.height / 2 - size / 2;
   const endX = to.left + to.width / 2 - size / 2;
@@ -43,9 +55,9 @@ export function flyToBasket() {
     willChange: "transform, opacity",
   } satisfies Partial<CSSStyleDeclaration>);
 
-  if (source instanceof HTMLImageElement && source.currentSrc) {
+  if (photo?.currentSrc) {
     const img = document.createElement("img");
-    img.src = source.currentSrc;
+    img.src = photo.currentSrc;
     img.alt = "";
     Object.assign(img.style, {
       width: "100%",
@@ -59,7 +71,7 @@ export function flyToBasket() {
 
   const dx = endX - startX;
   const dy = endY - startY;
-  const scaleEnd = Math.max(0.12, 36 / size);
+  const scaleEnd = Math.max(0.12, 30 / size);
 
   // Curved path: rise a little first, then drop into the basket.
   const flight = ghost.animate(
@@ -70,7 +82,7 @@ export function flyToBasket() {
         borderRadius: "16px",
       },
       {
-        transform: `translate(${dx * 0.45}px, ${dy * 0.45 - 60}px) scale(0.55)`,
+        transform: `translate(${dx * 0.45}px, ${dy * 0.45 - 60}px) scale(${photoVisible ? 0.55 : 1.1})`,
         opacity: 1,
         offset: 0.45,
       },

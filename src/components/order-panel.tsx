@@ -10,7 +10,7 @@ import {
   Plus,
   ShoppingBag,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 import { flyToBasket } from "@/lib/fly-to-basket";
 
@@ -47,7 +47,8 @@ export function OrderPanel({ product }: { product: Product }) {
     return () => clearTimeout(t);
   }, [toast]);
 
-  const addToBasket = () => {
+  const addToBasket = (e: MouseEvent<HTMLButtonElement>) => {
+    const btn = e.currentTarget;
     add({
       slug: product.slug,
       name: productTitle(product),
@@ -58,7 +59,7 @@ export function OrderPanel({ product }: { product: Product }) {
     });
     setAdded(true);
     setToast((t) => t + 1);
-    flyToBasket();
+    flyToBasket(btn);
   };
 
   return (
