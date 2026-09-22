@@ -64,7 +64,8 @@ export default async function ProductPage({
   const enquiry = orderMessage(product);
 
   // Pack sizes / weights are not shown anywhere in the product UI.
-  const WEIGHT = /\b\d+(\.\d+)?\s?(g|kg|ml|l|litre|liter)s?\b|pack size|sizes?\b/i;
+  const WEIGHT =
+    /\b\d+(\.\d+)?\s?(g|kg|ml|l|litre|liter)s?\b|pack size|sizes?\b/i;
   const teFeatures = teluguFeatures(product);
   const features = product.features
     .map((en, i) => ({ en, te: teFeatures?.[i] }))
@@ -123,7 +124,10 @@ export default async function ProductPage({
 
       <article className="mx-auto max-w-[1400px] px-4 py-5 sm:px-5 sm:py-8 lg:px-10 lg:py-12">
         <div className="grid gap-5 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
-          <div className="border-border bg-card rounded-sm border p-4 sm:p-10">
+          <div
+            data-product-image
+            className="border-border bg-card rounded-sm border p-4 sm:p-10"
+          >
             <ProductImage
               product={product}
               priority
@@ -142,7 +146,10 @@ export default async function ProductPage({
             <h1 className="mt-2 font-serif text-[28px] leading-tight break-words sm:text-4xl lg:text-5xl">
               {product.h1}
             </h1>
-            <p lang="te" className="text-ink-soft mt-1 font-serif text-xl break-words sm:text-2xl">
+            <p
+              lang="te"
+              className="text-ink-soft mt-1 font-serif text-xl break-words sm:text-2xl"
+            >
               {product.teluguName}
             </p>
             <p className="text-muted-foreground mt-3 text-[15px] leading-7 sm:text-base sm:leading-8">

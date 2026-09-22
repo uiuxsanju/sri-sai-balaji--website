@@ -102,12 +102,16 @@ export function SiteHeader() {
             </a>
             <Link
               href="/basket"
+              data-basket-target
               aria-label={`Basket, ${count} ${count === 1 ? "item" : "items"}`}
               className="border-border hover:border-primary hover:text-primary text-primary relative grid size-11 shrink-0 place-items-center rounded-full border transition"
             >
               <ShoppingBag className="size-[18px]" aria-hidden="true" />
               {count > 0 && (
-                <span className="bg-gold text-primary absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full px-1 text-[10px] font-bold">
+                <span
+                  key={count}
+                  className="bg-gold text-primary basket-pop absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full px-1 text-[10px] font-bold"
+                >
                   {count > 99 ? "99+" : count}
                 </span>
               )}

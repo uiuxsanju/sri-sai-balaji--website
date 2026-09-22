@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  ArrowRight,
   Check,
   MessageCircle,
   Minus,
@@ -10,6 +11,8 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+
+import { flyToBasket } from "@/lib/fly-to-basket";
 
 import { useBasket } from "@/components/basket-context";
 
@@ -31,13 +34,18 @@ export function OrderPanel({ product }: { product: Product }) {
   const [size, setSize] = useState(sizes[0]);
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [toast, setToast] = useState(0);
   const { add } = useBasket();
 
+  // Like Flipkart / Meesho: once added, the button becomes "Go to Basket" until the
+  // customer picks a different size or quantity.
+  useEffect(() => setAdded(false), [size, quantity]);
+
   useEffect(() => {
-    if (!added) return;
-    const t = setTimeout(() => setAdded(false), 4000);
+    if (!toast) return;
+    const t = setTimeout(() => setToast(0), 3000);
     return () => clearTimeout(t);
-  }, [added]);
+  }, [toast]);
 
   const addToBasket = () => {
     add({
@@ -49,6 +57,8 @@ export function OrderPanel({ product }: { product: Product }) {
       image: product.image,
     });
     setAdded(true);
+    setToast((t) => t + 1);
+    flyToBasket();
   };
 
   return (
@@ -122,18 +132,25 @@ export function OrderPanel({ product }: { product: Product }) {
 
       {/* Actions: full width on phones, inline from sm up */}
       <div className="mt-5 grid gap-3 sm:flex sm:flex-wrap">
-        <button
-          type="button"
-          onClick={addToBasket}
-          className="bg-primary text-primary-foreground hover:bg-forest inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full px-7 text-sm font-bold whitespace-nowrap transition sm:w-auto"
-        >
-          {added ? (
-            <Check className="size-4 shrink-0" aria-hidden="true" />
-          ) : (
+        {added ? (
+          <Link
+            href="/basket"
+            className="bg-primary text-primary-foreground hover:bg-forest inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full px-7 text-sm font-bold whitespace-nowrap transition sm:w-auto"
+          >
             <ShoppingBag className="size-4 shrink-0" aria-hidden="true" />
-          )}
-          {added ? "Added to Basket" : "Add to Basket"}
-        </button>
+            Go to Basket
+            <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={addToBasket}
+            className="bg-primary text-primary-foreground hover:bg-forest inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full px-7 text-sm font-bold whitespace-nowrap transition sm:w-auto"
+          >
+            <ShoppingBag className="size-4 shrink-0" aria-hidden="true" />
+            Add to Basket
+          </button>
+        )}
         <a
           href={orderLink(product, { quantity, size })}
           target="_blank"
@@ -152,22 +169,33 @@ export function OrderPanel({ product }: { product: Product }) {
         </a>
       </div>
 
-      <p aria-live="polite" className="min-h-0 text-sm">
-        {added && (
-          <span className="bg-sage/10 text-foreground mt-3 flex flex-wrap items-center justify-between gap-2 rounded-sm px-4 py-3">
-            <span>
-              {quantity} × {size ? `${size} ` : ""}
-              {productTitle(product)} added.
+      {/* Snackbar, Flipkart-style */}
+      <div
+        aria-live="polite"
+        className={`fixed inset-x-3 bottom-4 z-[60] mx-auto max-w-md transition-all duration-300 sm:bottom-6 ${
+          toast
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-6 opacity-0"
+        }`}
+      >
+        {toast > 0 && (
+          <div className="bg-foreground text-background flex items-center justify-between gap-3 rounded-md px-4 py-3 text-sm shadow-2xl">
+            <span className="flex min-w-0 items-center gap-2">
+              <Check className="text-gold size-4 shrink-0" aria-hidden="true" />
+              <span className="truncate">
+                {quantity} × {size ? `${size} ` : ""}
+                {productTitle(product)} added to basket
+              </span>
             </span>
             <Link
               href="/basket"
-              className="text-primary font-bold underline underline-offset-4"
+              className="text-gold shrink-0 text-xs font-bold tracking-wider uppercase"
             >
-              View Basket
+              View
             </Link>
-          </span>
+          </div>
         )}
-      </p>
+      </div>
 
       <p className="text-muted-foreground mt-4 text-sm leading-6">
         Message us on WhatsApp and we will reply with the current price and
