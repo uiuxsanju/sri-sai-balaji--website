@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
  * Product pack shot served straight from /public with a hand-built srcset.
@@ -35,10 +35,20 @@ export function PackShot({
   fallback?: ReactNode;
 }) {
   const [failed, setFailed] = useState(false);
+  const ref = useRef<HTMLImageElement>(null);
+
+  // An image can fail before React hydrates, in which case onError never fires.
+  // Check once on mount so the fallback still replaces it.
+  useEffect(() => {
+    const img = ref.current;
+    if (img && img.complete && img.naturalWidth === 0) setFailed(true);
+  }, []);
+
   if (failed) return <>{fallback}</>;
 
   return (
     <img
+      ref={ref}
       src={`/products/${name}-800.webp`}
       srcSet={`/products/${name}-400.webp 400w, /products/${name}-800.webp 800w, /products/${name}.webp 1200w`}
       sizes={sizes}
@@ -50,6 +60,7 @@ export function PackShot({
       fetchPriority={priority ? "high" : "auto"}
       onError={() => setFailed(true)}
       className={className}
+      style={{ color: "transparent" }}
     />
   );
 }
