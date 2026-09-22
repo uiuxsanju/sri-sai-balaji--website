@@ -42,7 +42,7 @@ export function BrandMark({ light = false }: { light?: boolean }) {
         </small>
         <span
           lang="te"
-          className={`border-gold/60 mt-1.5 block max-w-[10.5rem] border-t pt-1 text-[10px] leading-snug font-semibold sm:max-w-none sm:text-xs sm:whitespace-nowrap lg:text-[13px] ${light ? "text-primary-foreground/80" : "text-primary/85"}`}
+          className={`border-gold/60 mt-1.5 block max-w-[10.5rem] border-t pt-1 text-[10px] leading-snug font-semibold sm:max-w-none sm:text-xs sm:whitespace-nowrap lg:max-w-[13.5rem] lg:whitespace-normal 2xl:max-w-[15rem] 2xl:text-[13px] ${light ? "text-primary-foreground/80" : "text-primary/85"}`}
         >
           {site.teluguTagline}
         </span>

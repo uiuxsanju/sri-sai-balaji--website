@@ -56,11 +56,11 @@ export function SiteHeader() {
             : "bg-background"
         }`}
       >
-        <div className="mx-auto grid min-h-20 py-2 lg:h-24 lg:py-0 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:grid-cols-[auto_1fr_auto] lg:px-10">
+        <div className="mx-auto grid min-h-20 py-2 lg:h-24 lg:py-0 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:grid-cols-[max-content_minmax(0,1fr)_auto] lg:px-10">
           <BrandMark />
 
           <nav
-            className="hidden justify-center gap-5 lg:flex xl:gap-6"
+            className="hidden min-w-0 justify-center gap-3 lg:flex xl:gap-5 2xl:gap-6"
             aria-label="Primary"
           >
             {NAV.map((item) => {
@@ -74,7 +74,7 @@ export function SiteHeader() {
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={`text-xs font-semibold tracking-[.12em] whitespace-nowrap uppercase transition ${
-                    item.secondary ? "hidden xl:inline" : ""
+                    item.secondary ? "hidden 2xl:inline" : ""
                   } ${
                     active
                       ? "text-primary"
@@ -90,7 +90,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <a
               href={`tel:${site.phoneE164}`}
-              className="text-primary hidden items-center gap-2 text-sm font-semibold sm:inline-flex"
+              className="text-primary hidden items-center gap-2 text-sm font-semibold whitespace-nowrap sm:inline-flex lg:hidden xl:inline-flex"
             >
               <Phone className="size-4" aria-hidden="true" />
               <span className="hidden md:inline">{site.phoneDisplay}</span>
