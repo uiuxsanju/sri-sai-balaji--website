@@ -9,7 +9,7 @@ import { site } from "@/data/site";
 import { PackShot } from "@/components/pack-shot";
 
 /** Autoplay interval in milliseconds. Change this one number to speed up or slow down. */
-const SLIDE_INTERVAL_MS = 1000;
+const SLIDE_INTERVAL_MS = 3000;
 
 type Slide = {
   image: string;
@@ -183,7 +183,8 @@ export function HeroCarousel() {
                   height={800}
                   sizes="(min-width: 1024px) 420px, 70vw"
                   alt={slide.alt}
-                  priority={i === 0}
+                  priority
+                  fallback={<div className="aspect-square w-full" aria-hidden="true" />}
                   className="aspect-square w-full object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,.28)]"
                 />
               </div>
