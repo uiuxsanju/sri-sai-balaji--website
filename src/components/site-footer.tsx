@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Instagram } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { BrandMark } from "@/components/ui";
@@ -29,6 +30,15 @@ export function SiteFooter() {
             <p lang="te" className="text-primary-foreground/70 mt-3 text-xs">
               {site.teluguTagline}
             </p>
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Sri Sai Balaji Naturals on Instagram"
+              className="border-primary-foreground/25 hover:border-primary-foreground hover:text-primary-foreground text-primary-foreground/70 mt-6 grid size-10 place-items-center rounded-full border transition"
+            >
+              <Instagram className="size-[18px]" aria-hidden="true" />
+            </a>
           </div>
 
           <div>

@@ -10,7 +10,8 @@
  * the live domain.
  */
 export const SITE_URL = (
-process.env.NEXT_PUBLIC_SITE_URL || "https://srisaibalajinaturals.in").replace(/\/$/, "");
+  process.env.NEXT_PUBLIC_SITE_URL || "https://srisaibalajinaturals.com"
+).replace(/\/$/, "");
 
 export const site = {
   name: "Sri Sai Balaji Naturals",
@@ -24,6 +25,7 @@ export const site = {
   phoneE164: "+916300550588",
   whatsappNumber: "916300550588",
   whatsappBase: "https://wa.me/916300550588",
+  instagram: "https://www.instagram.com/srisaibalajinaturals",
   city: "Vijayawada",
   address: {
     unit: "Sri Sai Balaji Oil Mill",
