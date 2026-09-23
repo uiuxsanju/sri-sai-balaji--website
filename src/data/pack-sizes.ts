@@ -19,6 +19,13 @@ export const PACK_SIZES: Record<string, string[]> = {
 
   // Andhra pickles — 500 g and 1 kg
   "veg-pickle": PICKLES,
+  "lemon-pickle": PICKLES,
+  "mango-pickle": PICKLES,
+  "usirikaya-pickle": PICKLES,
+  "pandu-mirchi-pickle": PICKLES,
+  "allam-pickle": PICKLES,
+  "gongura-pickle": PICKLES,
+  "tomato-pickle": PICKLES,
   "chicken-pickle": PICKLES,
   "prawns-pickle": PICKLES,
   "mutton-pickle": PICKLES,

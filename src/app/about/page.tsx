@@ -51,7 +51,7 @@ export default function AboutPage() {
                 The range covers six categories: cold pressed oils, spices and
                 powders, flours and rawa, natural foods like forest honey and
                 buffalo ghee, dry fruits and nuts, and traditional Andhra
-                pickles. Twenty-five products in total — a deliberately small
+                pickles. Thirty-two products in total — a deliberately small
                 list so each one gets proper attention.
               </p>
               <p>
@@ -65,7 +65,7 @@ export default function AboutPage() {
                 ఉత్పత్తుల వ్యాపారం. తెలుగు వంటింట్లో రోజూ వాడే వస్తువులను,
                 పూర్వం ఎలా తయారు చేసేవారో అలాగే అందించాలన్నదే మా ప్రయత్నం —
                 నూనెలు గానుగలో, మసాలాలు గింజల నుంచి, చిరుధాన్యాలు చిన్న
-                బ్యాచ్‌లలో. మొత్తం ఆరు విభాగాల్లో 25 ఉత్పత్తులు మాత్రమే
+                బ్యాచ్‌లలో. మొత్తం ఆరు విభాగాల్లో 32 ఉత్పత్తులు మాత్రమే
                 ఉంచుతున్నాం, తద్వారా ప్రతి దానిపై సరైన శ్రద్ధ పెట్టగలుగుతాం.
                 ధరలు, అందుబాటు గురించి WhatsApp లో నేరుగా సమాధానం ఇస్తాం.
               </p>

@@ -44,7 +44,7 @@ export const metadata = seo({
 const homeFaqs = [
   {
     q: "What natural food products do you offer in Vijayawada?",
-    a: "Cold pressed oils (groundnut, coconut, white sesame, black sesame), spice powders, millet flours and rawa, forest honey, buffalo ghee, dry fruits and nuts, and traditional Andhra pickles — 25 products in all.",
+    a: "Cold pressed oils (groundnut, coconut, white sesame, black sesame), spice powders, millet flours and rawa, forest honey, buffalo ghee, dry fruits and nuts, and traditional Andhra pickles — 32 products in all.",
   },
   {
     q: "Do you offer cold pressed oils?",
@@ -60,7 +60,7 @@ const homeFaqs = [
   },
   {
     q: "Do you sell Andhra pickles?",
-    a: "Yes — veg pickle, chicken pickle, prawns pickle and mutton pickle, all made to traditional Andhra recipes in small batches.",
+    a: "Yes — veg, lemon, mango, usirikaya, pandu mirchi, allam, gongura and tomato pickles, plus chicken, prawns and mutton pickles, all made to traditional Andhra recipes.",
   },
   {
     q: "How can I place an enquiry?",
@@ -370,8 +370,8 @@ export default function HomePage() {
             {[
               [
                 "Products",
-                "25 products across 6 categories",
-                "6 విభాగాల్లో 25 ఉత్పత్తులు",
+                "32 products across 6 categories",
+                "6 విభాగాల్లో 32 ఉత్పత్తులు",
               ],
               [
                 "Pack sizes",

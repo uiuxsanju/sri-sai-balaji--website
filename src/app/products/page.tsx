@@ -7,9 +7,9 @@ import { breadcrumbSchema, seo } from "@/lib/seo";
 import { enquiryMessage } from "@/lib/whatsapp";
 
 export const metadata = seo({
-  title: "All Natural Food Products in Vijayawada | 25 Products",
+  title: "All Natural Food Products in Vijayawada | 32 Products",
   description:
-    "Browse all 25 natural food products from Sri Sai Balaji Naturals — cold pressed oils, spice powders, flours and rawa, honey, ghee, dry fruits and Andhra pickles.",
+    "Browse all 32 natural food products from Sri Sai Balaji Naturals — cold pressed oils, spice powders, flours and rawa, honey, ghee, dry fruits and Andhra pickles.",
   path: "/products",
   keywords: [
     "natural food products Vijayawada",
@@ -62,7 +62,7 @@ export default function AllProductsPage() {
             విజయవాడలో సహజ ఆహార ఉత్పత్తులు
           </p>
           <p className="text-muted-foreground mt-5 text-base leading-8">
-            Twenty-five products across six categories — cold pressed oils,
+            Thirty-two products across six categories — cold pressed oils,
             spice powders, millet flours and rawa, forest honey and buffalo
             ghee, dry fruits and nuts, and traditional Andhra pickles. Every
             product page has the available pack sizes and a WhatsApp order
