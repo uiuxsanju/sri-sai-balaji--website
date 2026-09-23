@@ -10,8 +10,7 @@
  * the live domain.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://srisaibalajinaturals.com"
-).replace(/\/$/, "");
+process.env.NEXT_PUBLIC_SITE_URL || "https://srisaibalajinaturals.in").replace(/\/$/, "");
 
 export const site = {
   name: "Sri Sai Balaji Naturals",
